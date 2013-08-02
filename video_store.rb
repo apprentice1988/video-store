@@ -78,3 +78,22 @@ get '/' do
   @title = 'The Video Store'
   haml :index
 end
+
+post '/video/create' do 
+	video = Video.new(params[:video])
+	image_attachment = video.attachments.new
+	video_attachment = video.attachments.new
+	image_attachment.handle_upload(params['image-file'])
+	video_attachment.handle_upload(params['video-file'])
+	if video.save
+		@message = "Video was saved"
+	else
+		@message = "Video can't be saved"
+	end
+	haml :create
+end
+
+get '/video/new' do 
+	@title = "Upload Video"
+	haml :new
+end
