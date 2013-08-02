@@ -4,7 +4,7 @@ require 'sinatra'
 require 'haml'
 require './video_store'
 
-set :enviromment, :development
+set :environment, :development
 set :run, false
 set :raise_errors, true
 
